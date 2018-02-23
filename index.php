@@ -16,8 +16,8 @@
   			<div class="container">
   				<div class="vak xs-6">
   					<form class="form" action="mail.php" method="POST">
-              <input type="hidden" name="info[subject]" value="Adventure Tours - Chernobyl">
-              <input type="hidden" name="info[title]" value="Форма с модального окна">
+              <input type="hidden" name="info[subject]" value="Subject">
+              <input type="hidden" name="info[title]" value="Title">
               <input type="hidden" name="info[subtitle]" value="Детали заказа от <?php echo date('d-m-Y'); ?>">
   						<div class="form__row">
   							<input name="contacts[name]" type="text" placeholder="Имя"><span class="form-line"></span>
