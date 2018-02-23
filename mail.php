@@ -2,6 +2,7 @@
 	header("Access-Control-Allow-Origin: *");
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+		//print_r($_POST);
 		$default = array(
 			'email' 		=> 'seva.kurochka@gmail.com',
 			'sendfrom' 	=> 'ourLanding@gmail.com',
@@ -9,22 +10,19 @@
 		);
 
 		$settings = array(
-			'email' 		=> ( !empty($_POST['changeEmail']) && isset($_POST['changeEmail']) ) ? $_POST['changeEmail'] : $default['email'],
-			'subject' 	=> ( !empty($_POST['vsubject']) && isset($_POST['vsubject']) ) ? $_POST['vsubject'] : $default['subject']
+			'email' 		=> ( !empty($_POST['change_email']) && isset($_POST['change_email']) ) ? $_POST['change_email'] : $default['email'],
+			'subject' 	=> ( !empty($_POST['info']['subject']) && isset($_POST['info']['subject']) ) ? $_POST['info']['subject'] : $default['subject']
 		);
 
 		$fields = array(
-			'vname' 			=> array(
+			'name' 			=> array(
 				'title' 		=> 'Name'
 			),
-			'vemail' 			=> array(
+			'email' 			=> array(
 				'title' 		=> 'Email'
 			), 
-			'vphone' 			=> array(
+			'phone' 			=> array(
 				'title'			=> 'Phone'
-			),
-			'vcountForm' 	=> array(
-				'title'			=> 'Form submission place'
 			)
 		);
 
@@ -43,17 +41,27 @@
 			$message .= '<html xmlns="http://www.w3.org/1999/xhtml">';
 			$message .= '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/></head>';
 			$message .= '<body>';
-			$message .= '<table rules="all" style="border: 1px solid #999; width: 100%" cellpadding="10">';
-			foreach($message_fields as $field => $field_key) {
-				if( !empty($_POST[$field]) && isset($_POST[$field]) ){
-					$message .= '<tr>';
-					$message .= '<td><b>'.$field_key['title'].'</b></td>';
-					$message .= '<td>'.strip_tags($_POST[$field]).'</td>';
-					$message .= '</tr>';
-				}
-			}
-			$message .= "</table>";
-			$message .= "</body></html>";
+			$message .= '<div style="background-color:#f7f7f7;margin:0;padding:70px 0 70px 0;width:100%;">';
+				$message .= '<div style="width: 600px; max-width: 100%; margin-left: auto; margin-right: auto;">';
+					$message .= '<h1 style="background-color: #96588a; color: #fff; font-weight: bold; 	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;">'.$_POST['info']['title'].'</h1>';
+					$message .= '<table rules="all" style="border: 1px solid #999; width: 100%" cellpadding="10">';
+
+						foreach($message_fields as $field => $field_key) {
+
+							$contact_field = $_POST['contacts'][$field];
+
+							if( !empty($contact_field) && isset($contact_field) ){
+								$message .= '<tr>';
+								$message .= '<td><b>'.$field_key['title'].'</b></td>';
+								$message .= '<td>'.strip_tags($contact_field).'</td>';
+								$message .= '</tr>';
+							}
+						}
+
+					$message .= '</table>';
+				$message .= '</div>';
+			$message .= '</div>';
+			$message .= '</body></html>';
 
 			return $message;	
 		}
