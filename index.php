@@ -8,7 +8,6 @@
   <!--[if lte IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <link href="css/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;amp;subset=cyrillic" rel="stylesheet">
   </head>
   <body>
