@@ -43,7 +43,7 @@
 			$message .= '<html xmlns="http://www.w3.org/1999/xhtml">';
 			$message .= '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/></head>';
 			$message .= '<body>';
-			$message .= '<table rules="all" style="border: 1px solid #999;" cellpadding="10">';
+			$message .= '<table rules="all" style="border: 1px solid #999; width: 100%" cellpadding="10">';
 			foreach($message_fields as $field => $field_key) {
 				if( !empty($_POST[$field]) && isset($_POST[$field]) ){
 					$message .= '<tr>';
