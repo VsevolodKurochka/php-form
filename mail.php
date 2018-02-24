@@ -6,9 +6,10 @@
 		->to('seva.kurochka@gmail.com')
 		->from('from@gmail.com')
 		->subject('Subject')
-		->create_template('mail/tpl/email.html', [
-			'name' => 'Vsevolod Kurochka',
-      'job'  => 'Developer'
+		->create_template('mail/tpl/email.php', [
+			'title'			=> $_POST['info']['title'],
+			'subtitle'	=> $_POST['info']['subtitle'],
+			'subject'		=> $_POST['info']['subject']
 		])
 		->send();
 
