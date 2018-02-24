@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * WP_Mail
+	 * SEND_MAIL
 	 *
 	 * A simple class for creating and
 	 * sending Emails
