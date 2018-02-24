@@ -58,10 +58,10 @@
 <body>
   <div class="wrapper">
 		<div class="container">
-			<h1 class="title"><?php echo $this->variables['title']; ?></h1>
+			<h1 class="title"><?php echo $this->variables['info']['title']; ?></h1>
 			
 			<div class="container-inner">
-				<p class="subtitle"><?php echo $this->variables['subtitle']; ?></p>
+				<p class="subtitle"><?php echo $this->variables['info']['subtitle']; ?></p>
 				<table rules="all" style="border: 1px solid #e5e5e5; width: 100%; color: #636363; margin-bottom: 60px;" cellpadding="15">
 					<?php foreach ($this->variables['contacts'] as $contact => $contact_value) { ?>
 						<tr>
@@ -71,7 +71,7 @@
 					<?php
 					} ?>
 				</table>
-				<p class="footer-text"><?php echo $this->variables['subject']; ?></p>
+				<p class="footer-text"><?php echo $this->variables['info']['subject']; ?></p>
 			</div>
 		</div>
 	</div>

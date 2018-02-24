@@ -9,9 +9,7 @@
 			->from('from@gmail.com')
 			->subject('Subject')
 			->template('mail/tpl/email.php', [
-				'title'			=> $_POST['info']['title'],
-				'subtitle'	=> $_POST['info']['subtitle'],
-				'subject'		=> $_POST['info']['subject'],
+				'info'			=> $_POST['info'],
 				'contacts'	=> $_POST['contacts']
 			])
 			->send();
