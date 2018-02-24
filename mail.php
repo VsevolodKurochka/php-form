@@ -2,7 +2,17 @@
 	header("Access-Control-Allow-Origin: *");
 	require_once 'mail/mail.php';
 
-	$form_mail = new SendMail('to', 'from', 'subject');
+	$form_mail = (new SEND_MAIL)
+		->to('seva.kurochka@gmail.com')
+		->from('from@gmail.com')
+		->subject('Subject')
+		->create_template('mail/tpl/email.html', [
+			'name' => 'Vsevolod Kurochka',
+      'job'  => 'Developer'
+		])
+		->send();
+
+	print_r($form_mail);
 
 	//print_r($form_mail);
 	//echo $form_mail->get_to();
