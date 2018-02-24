@@ -9,15 +9,12 @@
  */
 	class SEND_MAIL
 	{
-		public $to = [];
+		private $to = [];
 		private $from = '';
 		private $subject = '';
 
 		private $variables = [];
 		private $template = FALSE;
-
-
-		function __construct(){}
 
 		public function to($to){
 			$this->to = $to;
