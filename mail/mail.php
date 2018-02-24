@@ -1,18 +1,32 @@
 <?php
 	/**
-	* SendMail
-	*/
-	class SendMail
+	 * WP_Mail
+	 *
+	 * A simple class for creating and
+	 * sending Emails
+	 *
+	 * @author     Vsevolod Kurochka <seva.kurochka@gmail.com>
+ */
+	class SEND_MAIL
 	{
-		//public $to;
-		//public $from;
-		//public $subject;
+		private $to = [];
+		private $from = '';
+		private $subject = '';
 
 
 		function __construct($to, $from, $subject){
 			$this->to = $to;
 			$this->from = $from;
 			$this->subject = $subject;
+		}
+
+		public function to($to){
+			if(is_array($to)){
+				$this->to = $to;
+			}else{
+				$this->to = [$to];
+			}
+			return $this;
 		}
 
 		private function build_headers() {
@@ -36,7 +50,7 @@
 					$message .= '<div style="padding: 35px; background-color: #fff;">';
 						$message .= '<p style="margin-top: 0; letter-spacing: 1px;">'.$_POST['info']['subtitle'].'</p>';
 
-						$message .= '<table rules="all" style="border: 1px solid #e5e5e5; width: 100%; color: #636363; margin-bottom: 60px;" cellpadding="15">';
+						$message .= '<table rules="all" style="border: 1px solid #e5e5e5; width: 100%; max-width: 100%; color: #636363; margin-bottom: 60px;" cellpadding="15">';
 
 							foreach($message_fields as $field => $field_key) {
 
@@ -63,7 +77,7 @@
 		}
 
 		public function send() {
-			return wp_mail($this->to, $this->subject, $)
+			return wp_mail($this->to, $this->subject, $this->build_body, $this->build_headers)
 		}
 	}
 ?>
