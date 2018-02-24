@@ -6,14 +6,17 @@
 		->to('seva.kurochka@gmail.com')
 		->from('from@gmail.com')
 		->subject('Subject')
-		->create_template('mail/tpl/email.php', [
+		->template('mail/tpl/email.php', [
 			'title'			=> $_POST['info']['title'],
 			'subtitle'	=> $_POST['info']['subtitle'],
-			'subject'		=> $_POST['info']['subject']
+			'subject'		=> $_POST['info']['subject'],
+			'contacts'	=> $_POST['contacts']
 		])
 		->send();
 
-	print_r($form_mail);
+	//print_r($form_mail->render());
+
+	//print_r($form_mail);
 
 	//print_r($form_mail);
 	//echo $form_mail->get_to();
