@@ -1,12 +1,12 @@
 <?php
 	/**
-	 * SEND_MAIL
-	 *
-	 * A simple class for creating and
-	 * sending Emails
-	 *
-	 * @author     Vsevolod Kurochka <seva.kurochka@gmail.com>
- */
+		* SEND_MAIL
+		*
+		* A simple class for creating and
+		* sending Emails
+		*
+		* @author     Vsevolod Kurochka <seva.kurochka@gmail.com>
+	*/
 	class SEND_MAIL
 	{
 		private $to = [];
@@ -37,7 +37,7 @@
 			include($this->template);
 			$output = ob_get_contents();
 			ob_end_clean();
-	    return $output;
+			return $output;
 		}
 
 		public function template($template, $variables = []) {
@@ -51,7 +51,6 @@
 
 			return $this;
 		}
-
 
 		public function send() {
 			return mail($this->to, $this->subject, $this->render(), $this->create_headers() );
