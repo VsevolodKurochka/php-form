@@ -16,19 +16,10 @@
 		private $variables = [];
 		private $template = FALSE;
 
-		public function to($to){
-			$this->to = $to;
-			return $this;
-		}
-
-		public function from($from) {
-			$this->from = $from;
-			return $this;
-		}
-
-		public function subject($subject) {
-			$this->subject = $subject;
-			return $this;
+		function __construct($settings){
+			$this->to = $settings['to'];
+			$this->from = $settings['from'];
+			$this->subject = $settings['subject'];
 		}
 
 		private function create_headers() {
@@ -39,6 +30,14 @@
 			$headers .= "Content-Transfer-Encoding: 8bit \r\n";
 
 			return $headers;
+		}
+
+		private function render(){
+			ob_start();
+			include($this->template);
+			$output = ob_get_contents();
+			ob_end_clean();
+	    return $output;
 		}
 
 		public function template($template, $variables = []) {
@@ -53,13 +52,6 @@
 			return $this;
 		}
 
-		private function render(){
-			ob_start();
-			include($this->template);
-			$output = ob_get_contents();
-			ob_end_clean();
-	    return $output;
-		}
 
 		public function send() {
 			return mail($this->to, $this->subject, $this->render(), $this->create_headers() );
