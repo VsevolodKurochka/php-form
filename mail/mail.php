@@ -20,6 +20,10 @@
 			$this->to = $settings['to'];
 			$this->from = $settings['from'];
 			$this->subject = $settings['subject'];
+
+			if( isset($settings['redirect']) ) {
+				$this->redirect = $settings['redirect'];
+			}
 		}
 
 		private function create_headers() {
@@ -52,8 +56,15 @@
 			return $this;
 		}
 
+		private function redirect(){
+			if( isset($this->redirect) ){
+				header('Location: '.$this->redirect.' ');
+			}
+		}
+
 		public function send() {
-			return mail($this->to, $this->subject, $this->render(), $this->create_headers() );
+			mail($this->to, $this->subject, $this->render(), $this->create_headers() );
+			$this->redirect();
 		}
 	}
 ?>

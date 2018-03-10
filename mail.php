@@ -5,9 +5,10 @@
 		require_once 'mail/mail.php';
 
 		$form_mail = ( new SEND_MAIL(array(
-			'to'			=> 'seva.kurochka@gmail.com',
-			'from'		=> 'ourLanding@gmail.com',
-			'subject'	=> 'Subject'
+			'to'				=> 'seva.kurochka@gmail.com',
+			'from'			=> 'ourLanding@gmail.com',
+			'subject'		=> 'Subject',
+			'redirect'	=> 'thx.php'
 		)) )
 		->template('mail/tpl/email.php', [
 			'info'			=> $_POST['info'],
