@@ -8,12 +8,13 @@
 			'to'				=> 'seva.kurochka@gmail.com',
 			'from'			=> 'ourLanding@gmail.com',
 			'subject'		=> 'Subject',
-			'redirect'	=> 'thx.php'
+			'redirect'	=> 'thx.php',
+			'variables'	=> [
+				'info'			=> $_POST['info'],
+				'contacts'	=> $_POST['contacts']
+			],
+			'template' 	=> 'mail/tpl/email.php'
 		)) )
-		->template('mail/tpl/email.php', [
-			'info'			=> $_POST['info'],
-			'contacts'	=> $_POST['contacts']
-		])
 		->send();
 
 	else:

@@ -9,17 +9,14 @@
 	*/
 	class SEND_MAIL
 	{
-		private $to = [];
-		private $from = '';
-		private $subject = '';
-
-		private $variables = [];
-		private $template = FALSE;
 
 		function __construct($settings){
-			$this->to = $settings['to'];
-			$this->from = $settings['from'];
-			$this->subject = $settings['subject'];
+			
+			$this->to 				= $settings['to'];
+			$this->from 			= $settings['from'];
+			$this->subject 		= $settings['subject'];
+			$this->variables  = $settings['variables'];
+			$this->template 	= $settings['template'];
 
 			if( isset($settings['redirect']) ) {
 				$this->redirect = $settings['redirect'];
@@ -37,23 +34,19 @@
 		}
 
 		private function render(){
-			ob_start();
-			include($this->template);
-			$output = ob_get_contents();
-			ob_end_clean();
-			return $output;
-		}
 
-		public function template($template, $variables = []) {
-
-			if(!file_exists($template)){
+			if(!file_exists($this->template)){
 				throw new Exception('File not found');
 			}
 
-			$this->variables = $variables;
-			$this->template = $template;
+			ob_start();
 
-			return $this;
+			include($this->template);
+			$output = ob_get_contents();
+
+			ob_end_clean();
+
+			return $output;
 		}
 
 		private function redirect(){
