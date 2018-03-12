@@ -18,8 +18,14 @@
 			$this->variables  = $settings['variables'];
 			$this->template 	= $settings['template'];
 
+
 			if( isset($settings['redirect']) ) {
 				$this->redirect = $settings['redirect'];
+				
+			}
+
+			if( isset($settings['redirect_add_get_params']) ) {
+				$this->redirect_add_get_params = $settings['redirect_add_get_params'];
 			}
 		}
 
@@ -50,13 +56,44 @@
 		}
 
 		private function redirect(){
+
+			// If user enable redirect
 			if( isset($this->redirect) ){
-				header('Location: '.$this->redirect.' ');
+
+				// If user enable redirect with adding to thx page
+				if(isset($this->redirect_add_get_params)){
+
+					// Set first element as true
+					$first = true;
+
+					// Create variable with our GET params
+					$get_params = '';
+
+
+					// If in our variables
+					// we have contact(name, phone, email, etc)
+					if( isset($this->variables['contacts']) ){
+						foreach ($this->variables['contacts'] as $contact => $contact_info) {
+							if($first){
+								$first = false;
+								$get_params .= '?' . $contact . '=' . $contact_info;
+							}else{
+								$get_params .= '&' . $contact . '=' . $contact_info;
+							}
+						}
+					}
+					
+					
+				}else{
+					$redirect = $this->redirect;
+				}
+
+				//header('Location: ' . $redirect);
 			}
 		}
 
 		public function send() {
-			mail($this->to, $this->subject, $this->render(), $this->create_headers() );
+			//mail($this->to, $this->subject, $this->render(), $this->create_headers() );
 			$this->redirect();
 		}
 	}
