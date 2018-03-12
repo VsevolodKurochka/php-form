@@ -61,13 +61,17 @@
 			<div class="container-inner">
 				<p class="subtitle"><?php echo $this->variables['info']['subtitle']; ?></p>
 				<table rules="all" style="border: 1px solid #e5e5e5; width: 100%; color: #636363; margin-bottom: 60px;" cellpadding="15">
-					<?php foreach ($this->variables['contacts'] as $contact => $contact_value) { ?>
-						<tr>
-							<th style="text-align: left; text-transform: uppercase"><?php echo $contact; ?></th>
-							<td><?php echo $contact_value; ?></td>
-						</tr>
 					<?php
-					} ?>
+					if(isset($this->variables['contacts'])){
+						foreach ($this->variables['contacts'] as $contact => $contact_value) { ?>
+							<tr>
+								<th style="text-align: left; text-transform: uppercase"><?php echo $contact; ?></th>
+								<td><?php echo $contact_value; ?></td>
+							</tr>
+						<?php
+						}
+					}
+					?>
 				</table>
 				<p class="footer-text"><?php echo $this->variables['info']['subject']; ?></p>
 			</div>
