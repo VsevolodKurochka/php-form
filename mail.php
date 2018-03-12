@@ -4,7 +4,7 @@
 		header("Access-Control-Allow-Origin: *");
 		require_once 'mail/mail.php';
 
-		$form_mail = ( new SEND_MAIL(array(
+		$form_mail = (new SEND_MAIL(array(
 			'to'				=> 'seva.kurochka@gmail.com',
 			'from'			=> 'ourLanding@gmail.com',
 			'subject'		=> 'Subject',
@@ -14,7 +14,7 @@
 				'contacts'	=> $_POST['contacts']
 			],
 			'template' 	=> 'mail/tpl/email.php'
-		)) )
+		)))
 		->send();
 
 	else:
