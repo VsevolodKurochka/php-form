@@ -30,6 +30,11 @@
 				padding: 15px;
 			}
 		}
+		.table{
+			border: 1px solid #e5e5e5;
+			width: 100%;
+			color: #636363;
+		}
 		.title{
 			background-color: #96588a;
 			color: #fff;
@@ -47,11 +52,6 @@
 			margin-top: 0;
 			letter-spacing: 1px;
 		}
-		.footer-text{
-			text-align: center; 
-			font-size: 12px;
-			color: #c09bb9;
-		}
 	</style>
 </head>
 <body>
@@ -60,7 +60,7 @@
 			<h1 class="title"><?php echo $this->variables['info']['title']; ?></h1>
 			<div class="container-inner">
 				<p class="subtitle"><?php echo $this->variables['info']['subtitle']; ?></p>
-				<table rules="all" style="border: 1px solid #e5e5e5; width: 100%; color: #636363; margin-bottom: 60px;" cellpadding="15">
+				<table rules="all" class="table" cellpadding="15">
 					<?php
 					if(isset($this->variables['contacts'])){
 						foreach ($this->variables['contacts'] as $contact => $contact_value) { ?>
@@ -73,7 +73,6 @@
 					}
 					?>
 				</table>
-				<p class="footer-text"><?php echo $this->variables['info']['subject']; ?></p>
 			</div>
 		</div>
 	</div>
