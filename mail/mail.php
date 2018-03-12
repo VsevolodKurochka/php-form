@@ -60,6 +60,8 @@
 			// If user enable redirect
 			if( isset($this->redirect) ){
 
+				$redirect = '';
+
 				// If user enable redirect with adding to thx page
 				if(isset($this->redirect_add_get_params)){
 
@@ -71,29 +73,42 @@
 
 
 					// If in our variables
-					// we have contact(name, phone, email, etc)
+					// we have contacts array(name, phone, email, etc)
 					if( isset($this->variables['contacts']) ){
+
+						// Iteration of our array with contacts info
 						foreach ($this->variables['contacts'] as $contact => $contact_info) {
+
+							// If it first element of array
 							if($first){
+
+								// Set false
 								$first = false;
+
+								// Start adding GET params with `?`
 								$get_params .= '?' . $contact . '=' . $contact_info;
 							}else{
+
+								// adding GET params with `&`
 								$get_params .= '&' . $contact . '=' . $contact_info;
 							}
 						}
 					}
+
+					$redirect .= $this->redirect . $get_params;
 					
 					
 				}else{
-					$redirect = $this->redirect;
+					$redirect .= $this->redirect;
 				}
 
-				//header('Location: ' . $redirect);
+				// Change location with our redirect(with or without addition information(email, phone, name, etc))
+				header('Location: ' . $redirect);
 			}
 		}
 
 		public function send() {
-			//mail($this->to, $this->subject, $this->render(), $this->create_headers() );
+			mail($this->to, $this->subject, $this->render(), $this->create_headers() );
 			$this->redirect();
 		}
 	}

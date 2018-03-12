@@ -9,6 +9,7 @@
 			'from'			=> 'ourLanding@gmail.com',
 			'subject'		=> 'Subject',
 			'redirect'	=> 'thx.php',
+			'redirect_add_get_params'	=> true,
 			'variables'	=> [
 				'info'			=> $_POST['info'],
 				'contacts'	=> $_POST['contacts']
